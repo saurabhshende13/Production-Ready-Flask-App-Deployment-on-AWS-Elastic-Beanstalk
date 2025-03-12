@@ -23,13 +23,22 @@ This project demonstrates how to deploy a Flask application on **AWS Elastic Bea
 2. Click **Create Application** and enter:  
    - **Application Name**: `flask-app`  
    - **Environment Name**: `flask-app-env-prod`  
+
+![step1a](steps/step1a.png)
+
+![step1b](steps/step1b.png)
+
 3. Select the **Platform**:  
    - Choose **Python** (since Flask is a Python-based framework).  
-   - Use the latest available version.  
+   - Use the latest available version.
+
+![step1c](steps/step1c.png)
 
 ### 2️⃣ **Upload and Deploy the Flask Application**  
 1. Compress your **Flask project folder** into a **ZIP file** (e.g., `flask-app.zip`).  
 2. Upload the ZIP file to **Elastic Beanstalk**.  
+
+![step1d](steps/step1d.png)
 
 ### 3️⃣ **Set Up IAM Roles (Service Role & EC2 Instance Profile Role)**  
 
@@ -53,35 +62,64 @@ This project demonstrates how to deploy a Flask application on **AWS Elastic Bea
    - `AmazonS3ReadOnlyAccess` (For accessing S3 logs, optional)  
    - `AmazonRDSFullAccess` (If using RDS, optional)  
 4. Click **Create Role** and name it: `aws-elasticbeanstalk-ec2-role`.  
-5. Navigate to **IAM > Instance Profiles > Create Instance Profile**, name it `aws-elasticbeanstalk-ec2-profile`, and attach the newly created role.  
+5. Navigate to **IAM > Instance Profiles > Create Instance Profile**, name it `aws-elasticbeanstalk-ec2-profile`, and attach the newly created role.
 
 ### 4️⃣ **Configure Elastic Beanstalk Environment**  
 1. **Assign IAM Roles**:  
    - Select **Service Role**: `aws-elasticbeanstalk-service-role`.  
-   - Select **Instance Profile**: `aws-elasticbeanstalk-ec2-profile`.  
-2. **Key Pair (Optional)**: Select a **Key Pair** if you want SSH access to the instance.  
+   - Select **Instance Profile**: `aws-elasticbeanstalk-ec2-profile`.
+
+![step1e](steps/step1e.png)
+
+2. **Key Pair (Optional)**: Select a **Key Pair** if you want SSH access to the instance.
 3. **VPC & Subnet Configuration (Optional)**:  
    - If using a **private VPC** setup, provide **VPC and Subnet details**.  
-   - Configure **RDS** if required.  
+   - Configure **RDS** if required.
+  
+![step1f](steps/step1f.png)
+
 4. **Root Volume & Storage**:  
-   - Use the **default container root volume** for deployment.  
+   - Use the **default container root volume** for deployment.
+  
+![step1g](steps/step1g.png)
+
 5. **CloudWatch Monitoring**:  
-   - Enable **Enhanced CloudWatch Logs** for better monitoring.  
+   - Enable **Enhanced CloudWatch Logs** for better monitoring.
+
+![step1h](steps/step1h.png)
+
 6. **Security Group Assignment**:  
-   - Assign an **appropriate security group** for inbound/outbound traffic.  
+   - Assign an **appropriate security group** for inbound/outbound traffic.
+  
+![step1i](steps/step1i.png)
+
 7. **Auto Scaling Configuration**:  
-   - Configure auto-scaling policies based on CPU usage.  
+   - Configure auto-scaling policies based on CPU usage.
+  
+![step1j](steps/step1j.png)
+
 8. **Instance Type & AMI**:  
    - Choose an **instance type** (e.g., `t3.micro` for low-cost or `t3.medium` for higher performance).  
-   - Specify a custom **AMI ID** if required.  
+   - Specify a custom **AMI ID** if required.
+
+![step1k](steps/step1k.png)
+
 9. **Health Reporting**:  
-   - Select **Basic** or **Enhanced** health reporting.  
+   - Select **Basic** or **Enhanced** health reporting.
+
+![step1l](steps/step1l.png)
+
 10. **Managed Updates & Notifications**:  
     - Keep **platform-managed updates disabled** initially.  
-    - Configure **email notifications** for health alerts.  
+    - Configure **email notifications** for health alerts.
+   
+![step1m](steps/step1m.png)
+
 11. **Proxy & Log Configuration**:  
     - Specify a **proxy server** (default: Nginx).  
     - Enable **S3 log storage** and **CloudWatch log streaming**.  
+
+![step1n](steps/step1n.png)
 
 ### 5️⃣ **Verify Deployment & Debug Issues**  
 1. Once deployed, check the **Elastic Beanstalk URL** (`http://flask-app-env-prod.elasticbeanstalk.com`).  
@@ -90,7 +128,11 @@ This project demonstrates how to deploy a Flask application on **AWS Elastic Bea
    eb ssh flask-app-env-prod
    sudo systemctl restart flask
    ```  
-3. You can also manually re-run commands inside `.ebextensions/flask.config` to apply missing configurations.  
+3. You can also manually re-run commands inside `.ebextensions/flask.config` to apply missing configurations.
+
+![step1o](steps/step1o.png)
+
+![step1p](steps/step1p.png)
 
 ---
 
@@ -101,11 +143,15 @@ This project demonstrates how to deploy a Flask application on **AWS Elastic Bea
 2. Select your hosted zone (e.g., `devildevops.live`).  
 3. Create a new **A Record**:  
    - Type: **A Record (Alias)**  
-   - Value: **Elastic Beanstalk Domain URL** (`flask-app-env-prod.elasticbeanstalk.com`).  
+   - Value: **Elastic Beanstalk Domain URL** (`flask-app-env-prod.elasticbeanstalk.com`).
+  
+![step2a](steps/step2a.png)
 
 ### 2️⃣ **Verify Domain Mapping**  
 - Open your browser and navigate to `https://devildevops.live`.  
-- It may take **a few minutes to several hours** for DNS changes to propagate.  
+- It may take **a few minutes to several hours** for DNS changes to propagate.
+
+![step2b](steps/step2b.png)
 
 ---
 
