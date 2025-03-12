@@ -1,4 +1,4 @@
-### 🚀 **Production-Ready Flask App Deployment on AWS Elastic Beanstalk**  
+# Production-Ready Flask App Deployment on AWS Elastic Beanstalk  
 
 Welcome to the **Flask App Deployment on AWS Elastic Beanstalk** project! In this guide, we'll walk through deploying a production-ready Flask application on **AWS Elastic Beanstalk**, configuring it with **Route 53** to point to a custom domain, and ensuring a robust deployment setup.  
 
